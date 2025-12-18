@@ -8,7 +8,8 @@ local L = LibStub("AceLocale-3.0"):GetLocale("Talented")
 function Talented:UpdatePlayerSpecs()
 	if GetNumTalentTabs() == 0 then return end
 	local class = select(2, UnitClass"player")
-	local info = self:UncompressSpellData(class)
+	local info = self:GetTalentInfo(class)
+	if not info then return end
 	if not self.alternates then self.alternates = {} end
 	for talentGroup = 1, GetNumTalentGroups() do
 		local template = self.alternates[talentGroup]
@@ -27,7 +28,7 @@ function Talented:UpdatePlayerSpecs()
 				ttab = {}
 				template[tab] = ttab
 			end
-			for index = 1, #tree do
+			for index, talent in ipairs(tree.talents) do
 				ttab[index] = select(5, GetTalentInfo(tab, index, nil, nil, talentGroup))
 			end
 		end
