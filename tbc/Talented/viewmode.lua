@@ -12,16 +12,11 @@ function Talented:UpdatePlayerSpecs()
 	if not info then return end
 	if not self.alternates then self.alternates = {} end
 	for talentGroup = 1, GetNumTalentGroups() do
-		local template = self.alternates[talentGroup]
-		if not template then
-			template = {
-				talentGroup = talentGroup,
-				name = (talentGroup == 1 and TALENT_SPEC_PRIMARY or TALENT_SPEC_SECONDARY):gsub("^%s*(.-)%s*$", "%1"),
-				class = class,
-			}
-		else
-			template.points = nil
-		end
+		local template = {
+			talentGroup = talentGroup,
+			name = (talentGroup == 1 and TALENT_SPEC_PRIMARY or TALENT_SPEC_SECONDARY):gsub("^%s*(.-)%s*$", "%1"),
+			class = class,
+		}
 		for tab, tree in ipairs(info) do
 			local ttab = template[tab]
 			if not ttab then
@@ -29,7 +24,7 @@ function Talented:UpdatePlayerSpecs()
 				template[tab] = ttab
 			end
 			for index, talent in ipairs(tree.talents) do
-				ttab[index] = select(5, GetTalentInfo(tab, index, nil, nil, talentGroup))
+				ttab[index] = select(5, self:MatchedGetTalentInfo(tab, index, nil, nil, talentGroup))
 			end
 		end
 		self.alternates[talentGroup] = template
@@ -67,10 +62,11 @@ function Talented:UpdateCurrentTemplate()
 		info = self:GetTalentInfo(template.class)
 	end
 
+	local activeTalentGroup = GetActiveTalentGroup()
 	local total = 0 
 	for tab, tree in ipairs(info) do
 		for index, info in ipairs(tree.talents) do
-			local rank = select(5, self:MatchedGetTalentInfo(tab, index))
+			local rank = select(5, self:MatchedGetTalentInfo(tab, index, nil, nil, activeTalentGroup))
 			template[tab][index] = rank
 			total = total + rank
 		end

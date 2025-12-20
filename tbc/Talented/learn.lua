@@ -89,8 +89,8 @@ function Talented:MatchedLearnTalent(tab, index)
 	return LearnTalent(tab, new2OldIdx[tab][index])
 end
 
-function Talented:MatchedGetTalentInfo(tab, index, isInspect)
-	return GetTalentInfo(tab, new2OldIdx[tab][index], isInspect)
+function Talented:MatchedGetTalentInfo(tab, index, isInspect, isPet, talentGroup)
+	return GetTalentInfo(tab, new2OldIdx[tab][index], isInspect, isPet, talentGroup)
 end
 
 --[tab].talents[index].info

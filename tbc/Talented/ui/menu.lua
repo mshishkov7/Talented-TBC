@@ -209,10 +209,10 @@ StaticPopupDialogs["TALENTED_IMPORT_URL"] = {
 	maxLetters = 256,
 	whileDead = 1,
 	OnShow = function (self)
-		self.EditBox:SetText""
+		_G[self:GetName() .. "EditBox"]:SetText("")
 	end,
 	OnAccept = function(self)
-		local url = self.EditBox:GetText()
+		local url = _G[self:GetName() .. "EditBox"]:GetText()
 		self:Hide()
 		local template = Talented:ImportTemplate(url)
 		if template then Talented:OpenTemplate(template) end
@@ -239,7 +239,7 @@ StaticPopupDialogs["TALENTED_EXPORT_TO"] = {
 	whileDead = 1,
 	autoCompleteParams = AUTOCOMPLETE_LIST.WHISPER,
 	OnAccept = function(self)
-		local name = self.EditBox:GetText()
+		local name = _G[self:GetName() .. "EditBox"]:GetText()
 		self:Hide()
 		Talented:ExportTemplateToUser(name)
 	end,

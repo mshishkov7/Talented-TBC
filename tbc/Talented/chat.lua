@@ -1,7 +1,4 @@
-local ipairs = ipairs
 local Talented = Talented
-local format = string.format
-
 local L = LibStub("AceLocale-3.0"):GetLocale("Talented")
 
 function Talented:WriteToChat(text, ...)
@@ -20,35 +17,41 @@ function Talented:WriteToChat(text, ...)
 	end
 end
 
-local function GetDialog()
-	StaticPopupDialogs.TALENTED_SHOW_DIALOG = {
-		text = L["URL:"],
-		button1 = OKAY,
-		hasEditBox = 1,
-		hasWideEditBox = 1,
-		timeout = 0,
-		whileDead = 1,
-		hideOnEscape = 1,
-		OnShow = function (self)
-			_G[self:GetName()..'Button1']:SetPoint("TOP", _G[self:GetName()..'EditBox'], "BOTTOM", 0, -8)
-		end,
-		EditBoxOnEnterPressed = function(self)
-			local parent = self:GetParent()
-			StaticPopupDialogs[parent.which].OnAccept(parent)
-			self:GetParent():Hide()
-		end,
-		EditBoxOnEscapePressed = function(self)
-			self:GetParent():Hide();
-		end,
-	}
-	GetDialog = function () return StaticPopup_Show"TALENTED_SHOW_DIALOG" end
-	return GetDialog()
-end
+StaticPopupDialogs.TALENTED_SHOW_DIALOG = {
+	text = L["URL:"],
+	button1 = OKAY,
+	hasEditBox = 1,
+	hasWideEditBox = 1,
+	timeout = 0,
+	whileDead = 1,
+	hideOnEscape = 1,
+	OnShow = function(self)
+		local editBox = _G[self:GetName().."EditBox"]
+		if editBox then
+			editBox:HighlightText()
+		end
+	end,
+	OnAccept = function(self)
+		self:Hide()
+	end,
+	EditBoxOnEnterPressed = function(self)
+		self:GetParent():Hide()
+	end,
+	EditBoxOnEscapePressed = function(self)
+		self:GetParent():Hide();
+	end,
+}
 
 function Talented:ShowInDialog(text, ...)
 	if text:find("%%", 1, true) then text = text:format(...) end
-	local dialog = GetDialog()
-	local edit = _G[dialog:GetName()..'EditBox']
-	edit:SetText(text)
-	edit:HighlightText()
+	
+	StaticPopupDialogs.TALENTED_SHOW_DIALOG.OnShow = function(self)
+		local editBox = _G[self:GetName().."EditBox"]
+		if editBox then
+			editBox:SetText(text)
+			editBox:HighlightText()
+		end
+	end
+
+	StaticPopup_Show("TALENTED_SHOW_DIALOG")
 end
