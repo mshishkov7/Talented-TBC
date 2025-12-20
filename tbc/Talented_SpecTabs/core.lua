@@ -74,8 +74,11 @@ end
 local function Tabs_UpdateCheck(self, template)
 	if not template or not Talented.alternates then return end
 	self.petspec1:SetChecked(template == Talented.pet_current)
-	self.spec1:SetChecked(template == Talented.alternates[1])
-	self.spec2:SetChecked(template == Talented.alternates[2])
+	
+	local isCurrent = (template == Talented.current)
+	local activeGroup = GetActiveTalentGroup()
+	self.spec1:SetChecked(template == Talented.alternates[1] or (isCurrent and activeGroup == 1))
+	self.spec2:SetChecked(template == Talented.alternates[2] or (isCurrent and activeGroup == 2))
 end
 
 local function TabFrame_OnClick(self, button)
@@ -102,7 +105,12 @@ local function TabFrame_OnClick(self, button)
 		if info.pet then
 			template = Talented.pet_current
 		elseif Talented.alternates then
-			template = Talented.alternates[info.talentGroup]
+			if info.talentGroup == GetActiveTalentGroup() then
+				if not Talented.current then Talented:UpdateCurrentTemplate() end
+				template = Talented.current
+			else
+				template = Talented.alternates[info.talentGroup]
+			end
 		end
 		if template then Talented:OpenTemplate(template) end
 		Tabs_UpdateCheck(self:GetParent(), template)

@@ -304,13 +304,15 @@ function Talented:OnDisable()
 end
 
 function Talented:ACTIVE_TALENT_GROUP_CHANGED()
-	self.talents = nil
+	-- self.talents = nil
 
-    self:UpdatePlayerSpecs()
+	if self.UpdatePlayerSpecs then
+		self:UpdatePlayerSpecs()
+	end
+	self:UpdateCurrentTemplate()
     
-    local activeSpec = self:GetActiveSpec()
-    if self.base and self.base:IsShown() and activeSpec then
-        self:SetTemplate(activeSpec)
+    if self.base and self.base:IsShown() then
+        self:SetTemplate(self.current)
     end
     
     if self.tabs then
