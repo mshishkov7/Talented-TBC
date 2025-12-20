@@ -216,3 +216,16 @@ function Talented:ReportMissingTalents(class)
 		-- end
 	end
 end
+
+function Talented:GetTemplatePoints(template)
+	if not template then return 0 end
+	local points = 0
+	for tab, data in ipairs(template) do
+		if data then
+			for talent, rank in ipairs(data) do
+				points = points + rank
+			end
+		end
+	end
+	return points
+end

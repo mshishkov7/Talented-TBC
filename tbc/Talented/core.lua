@@ -341,6 +341,9 @@ end
 
 function Talented:CHARACTER_POINTS_CHANGED()
 	self:UpdateCurrentTemplate()
+	if self:GetTemplatePoints(self.current) == 0 then
+		self:SetTemplate(self.current)
+	end
 	self:UpdateView()
 	if self.mode == "apply" then
 		self:ApplyNextTalentPoint()
