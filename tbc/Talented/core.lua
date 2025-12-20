@@ -294,6 +294,7 @@ function Talented:OnEnable()
 	self:RegisterEvent("CONFIRM_TALENT_WIPE")
 	self:RegisterEvent("CHARACTER_POINTS_CHANGED")
 	self:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
+	self:RegisterEvent("PLAYER_TALENT_UPDATE")
 	TalentMicroButton:SetScript("OnClick", ToggleTalentFrame)
 end
 
