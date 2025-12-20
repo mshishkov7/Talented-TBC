@@ -30,7 +30,7 @@ local function GetDialog()
 		whileDead = 1,
 		hideOnEscape = 1,
 		OnShow = function (self)
-			self.button1:SetPoint("TOP", self.editBox, "BOTTOM", 0, -8)
+			_G[self:GetName()..'Button1']:SetPoint("TOP", _G[self:GetName()..'EditBox'], "BOTTOM", 0, -8)
 		end,
 		EditBoxOnEnterPressed = function(self)
 			local parent = self:GetParent()
@@ -46,8 +46,9 @@ local function GetDialog()
 end
 
 function Talented:ShowInDialog(text, ...)
-	if text:find("%", 1, true) then text = text:format(...) end
-	local edit = GetDialog().editBox
+	if text:find("%%", 1, true) then text = text:format(...) end
+	local dialog = GetDialog()
+	local edit = _G[dialog:GetName()..'EditBox']
 	edit:SetText(text)
 	edit:HighlightText()
 end

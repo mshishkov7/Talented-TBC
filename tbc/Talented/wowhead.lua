@@ -59,6 +59,7 @@ Talented.importers["/%??talent#"] = function(self, url, dst)
 end
 
 Talented.exporters[L["Wowhead Talent Calculator"]] = function(self, template)
+    self:Print("Executing new wowhead exporter...")
     local s = {}
     for _, tree in ipairs(template) do
         for _, n in ipairs(tree) do
@@ -66,5 +67,5 @@ Talented.exporters[L["Wowhead Talent Calculator"]] = function(self, template)
         end
         s[#s + 1] = "-"
     end
-    return L["https://tbc.wowhead.com/talent-calc/%s/%s"]:format(template.class:lower(), table.concat(s))
+    return ("http://tbc.wowhead.com/talent-calc/%s/%s"):format(template.class:lower(), table.concat(s))
 end
