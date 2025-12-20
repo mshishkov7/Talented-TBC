@@ -293,12 +293,30 @@ function Talented:OnEnable()
 	UIParent:UnregisterEvent("CONFIRM_TALENT_WIPE")
 	self:RegisterEvent("CONFIRM_TALENT_WIPE")
 	self:RegisterEvent("CHARACTER_POINTS_CHANGED")
+	self:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 	TalentMicroButton:SetScript("OnClick", ToggleTalentFrame)
 end
 
 function Talented:OnDisable()
 	-- self:UnhookInspectUI()
 	UIParent:RegisterEvent("CONFIRM_TALENT_WIPE")
+end
+
+function Talented:ACTIVE_TALENT_GROUP_CHANGED()
+	if self.talents then
+		self.talents[select(2, UnitClass"player")] = nil
+	end
+
+    self:UpdatePlayerSpecs()
+    
+    local activeSpec = self:GetActiveSpec()
+    if self.base and self.base:IsShown() and activeSpec then
+        self:SetTemplate(activeSpec)
+    end
+    
+    if self.tabs then
+        self.tabs:Update()
+    end
 end
 
 function Talented:PLAYER_TALENT_UPDATE()
