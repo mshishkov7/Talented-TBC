@@ -303,9 +303,7 @@ function Talented:OnDisable()
 end
 
 function Talented:ACTIVE_TALENT_GROUP_CHANGED()
-	if self.talents then
-		self.talents[select(2, UnitClass"player")] = nil
-	end
+	self.talents = nil
 
     self:UpdatePlayerSpecs()
     
