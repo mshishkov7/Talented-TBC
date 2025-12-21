@@ -1,13 +1,10 @@
 # TalentedClassic
-WoW addon. A replacement to the default talent UI that allows creation of templates and viewing of all trees at once.
+A replacement to the default talent UI that allows creation of templates and viewing of all trees at once.
 
 Supports:
-- **Classic Era** (Vanilla 1.15.x)
 - **TBC Anniversary** (2.5.x)
-- **Season of Discovery**
-- **Wrath of the Lich King Classic** (3.4.x)
 
-This was an addon originally written by "Jerry" (URL: https://www.wowinterface.com/downloads/info12593-Talented.html). The project is since abandoned, so I adapted old code to form this version.
+This was an addon originally written by "Jerry" (URL: https://www.wowinterface.com/downloads/info12593-Talented.html). Then the continuation was by Lethay (https://github.com/Lethay/TalentedClassic) The project is since abandoned, so I adapted old code to form this version.
 
 **Feature List (adapted from original page)**
 
@@ -17,11 +14,6 @@ This was an addon originally written by "Jerry" (URL: https://www.wowinterface.c
     Share your current build with others, or any template you've made.
     Import and export templates directly from Wowhead.
     A macro command /talented apply <template> allows automatic application of a template based on its name.
-
-**Known issues and planned fixes**
-
-    Hunter pet talents do not work
-    Potential issues with importing talent builds from Wowhead.
 
 **License**
 
