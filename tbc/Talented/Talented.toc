@@ -1,8 +1,8 @@
 ## Interface: 20505
-## Title: Talented
+## Title: Talented - TBC
 ## Name: Talented
 ## Notes: The Talent Template Editor (TBC Anniversary)
-## Author: Jerry,Lethay
+## Author: verylosh
 ## Version: v1.0.0-TBC
 ## OptionalDeps: Ace3
 ## SavedVariables: TalentedDB
@@ -12,10 +12,6 @@
 ## X-LoadOn-Slash: /talented
 ## X-LoadOn-Event: CONFIRM_TALENT_WIPE
 ## X-LoadOn-CONFIRM_TALENT_WIPE: if IsAddOnLoaded"Talented" then return end AddonLoader:LoadAddOn"Talented" if Talented then Talented:CONFIRM_TALENT_WIPE() end
-## X-Curse-Packaged-Version: v1.0.0-TBC
-## X-Curse-Project-Name: Talented
-## X-Curse-Project-ID: talented
-## X-Curse-Repository-ID: wow/talented/mainline
 
 #@no-lib-strip@
 Libs\LibStub\LibStub.lua
