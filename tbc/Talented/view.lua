@@ -304,7 +304,7 @@ function TalentView:Update()
 		end
 	end
 
-	local cb = self.frame.checkbox --, self.frame.bactivate
+	local cb, ba = self.frame.checkbox, self.frame.bactivate
 	if cb then
 		if template == Talented.current then 
 			cb:Show()
@@ -318,6 +318,15 @@ function TalentView:Update()
 		-- 	cb.tooltip =L["Toggle editing of the template."]
 		end
 		cb:SetChecked(self.mode == "edit")
+	end
+
+	if ba then
+		if template.talentGroup and template.talentGroup ~= GetActiveTalentGroup() then
+			ba:Show()
+			ba.talentGroup = template.talentGroup
+		else
+			ba:Hide()
+		end
 	end
 	
 	local targetname = self.frame.targetname

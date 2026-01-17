@@ -3,5 +3,6 @@
 ## Dependency: Talented
 ## LoadOnDemand: 1
 ## DefaultState: Enabled
+## IconTexture: Interface\AddOns\Talented\icon.tga
 
 core.lua
