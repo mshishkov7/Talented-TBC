@@ -1,4 +1,4 @@
-## Interface: 20505
+## Interface: 20506
 ## Title: Talented Data
 ## Notes: Gather localized information about the different talent trees of your toons (TBC Anniversary)
 ## Version: v1.0.6-TBC

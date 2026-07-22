@@ -1,9 +1,9 @@
-## Interface: 20505
+## Interface: 20506
 ## Title: Talented - TBC
 ## Name: Talented
 ## Notes: The Talent Template Editor (TBC Anniversary)
 ## Author: verylosh
-## Version: v1.0.6-TBC
+## Version: v1.0.7-TBC
 ## OptionalDeps: Ace3
 ## IconTexture: Interface\AddOns\Talented\icon.tga
 ## SavedVariables: TalentedDB
