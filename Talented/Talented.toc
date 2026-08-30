@@ -3,7 +3,7 @@
 ## Name: Talented
 ## Notes: The Talent Template Editor (TBC Anniversary)
 ## Author: verylosh
-## Version: v1.0.7-TBC
+## Version: v1.0.10-TBC
 ## OptionalDeps: Ace3
 ## IconTexture: Interface\AddOns\Talented\icon.tga
 ## SavedVariables: TalentedDB
